@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{% static 'social_media/css/master.css' %}">
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Titillium+Web&display=swap" rel="stylesheet">
+{#    font-family: 'Lobster', cursive;#}
+{#    font-family: 'Titillium Web', sans-serif;#}
+
+    <title>Star Social</title>
+</head>
+<body>
+<nav class="navbar mynav" role="navigation" id="navbar">
+<div class="container" >
+    <a class="navbar-brand bigbrand" href="{% url 'home' %}">Star Social</a>
+    <ul class="nav justify-content-end ">
+        {% if user.is_authenticated %}
+            <li class="nav-item"><a href="{% url 'posts:create' %}" class="nav-link">Post</a></li>
+            <li class="nav-item"><a href="{% url 'groups:all' %}" class="nav-link">Groups</a></li>
+            <li class="nav-item"><a href="{% url 'groups:create' %}" class="nav-link">Create Group</a></li>
+            <li class="nav-item"><a href="{% url 'accounts:logout' %}" class="nav-link">Log out</a></li>
+        {% else %}
+            <li class="nav-item"><a href="{% url 'groups:all' %}"class="nav-link">Groups</a></li>
+            <li class="nav-item"><a href="{% url 'accounts:login' %}" class="nav-link">Log in</a></li>
+            <li class="nav-item"><a href="{% url 'accounts:signup' %}" class="nav-link">Sign up</a></li>
+        {% endif %}
+    </ul>
+</div>
+</nav>
+    <div class="container mycontent">
+        {% block content %}
+
+        {% endblock %}
+    </div>
+</body>
+</html>
